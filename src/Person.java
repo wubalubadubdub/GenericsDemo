@@ -31,4 +31,23 @@ public class Person {
                 "'" + name + "', " +
                 "age=" + age + "}";
     }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Person person = (Person) o;
+
+        if (getAge() != person.getAge()) return false;
+        return getName().equals(person.getName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName().hashCode();
+        result = 31 * result + getAge();
+        return result;
+    }
 }
