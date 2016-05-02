@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Created by bearg on 5/1/2016.
@@ -7,35 +7,51 @@ public class TestingGround {
 
     public static void main(String[] args) {
 
-        int[] intArray = new int[5]; // default values of 0
-        String[] strArray = new String[5]; // default values of null
-        float[] fArray = new float[5]; // default values of 0.0f
-        boolean[] boolArray = new boolean[5]; // default values of false
+        /*CircularBuffer<String> buffer = new CircularBuffer<>(10);
 
-        char[] charArray = {'a', 'b'}; // creates and initializes char[] of length 2
-        System.out.println(charArray.length);
+        buffer.offer("a");
+        buffer.offer("bc");
+        buffer.offer("d");
 
-        float[][] floatArray = new float[3][2]; // array of three float arrays that each hold 2 floats
-        float value = 1.0f;
-        for (int row = 0; row < 3; row++ ) {
+        String value = concatenate(buffer);
+        System.out.println(value);
 
-            for (int column = 0; column < 2; column++) {
+        String[] someStrings = {"a", "b", "c", "d"};
 
-                floatArray[row][column] = value;
-                value++;
-            }
+        Set<String> testSet = new HashSet<>();
+       testSet.addAll(Arrays.asList(someStrings));
+
+        testSet.forEach(System.out::println); // forEach is a default method of Iterable interface
+        // any class that implements Iterable or an interface that extends Iterable
+        // (e.g. any Collection) will have access to this method.*/
+
+        Person donDraper = new Person("Don Draper", 89);
+        Person peggyOlson = new Person("Peggy Olson", 65);
+        Person bertCooper = new Person("Bert Cooper", 100);
+
+        List<Person> madMen = new ArrayList<>();
+        madMen.add(donDraper);
+        madMen.add(peggyOlson);
+        madMen.add(bertCooper);
+
+        System.out.println(madMen);
+
+        Collections.sort(madMen, new AgeComparator()); // can pass instance of class implementing Comparator
+
+        System.out.println(madMen);
+
+    }
+
+    private static String concatenate(final CircularBuffer<String> buffer) {
+
+        StringBuilder result = new StringBuilder();
+
+        String value;
+        while ((value = (String) buffer.poll()) != null) {
+
+            result.append(value);
         }
 
-        // you can also initialize multidimensional arrays when the array is declared:
-        double[][] doubleArray =
-                {{1.0d, 2.0d, 3.0d},
-                {4.0d, 5.0d, 6.0d},
-                {7.0d, 8.0d, 9.0d}};
-
-        doubleArray[0][0] = 2.0d;
-
-        for (int i = 0; i < 3; i++) {
-            System.out.println(Arrays.toString(doubleArray[i]));
-        }
+        return result.toString();
     }
 }

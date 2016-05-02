@@ -1,18 +1,20 @@
 /**
  * Created by bearg on 5/1/2016.
+ * T is type parameter. It stands for a type like Integer, String,
+ * Person, Horse, etc.
  */
-public class CircularBuffer {
+public class CircularBuffer<T> {
 
-    private Object[] buffer;
+    private T[] buffer;
     private int readCursor = 0;
     private int writeCursor = 0;
 
     public CircularBuffer(int size) {
 
-        buffer = new Object[size];
+        buffer = (T[]) new Object[size]; // casting Object array to T array
     }
 
-    public boolean offer(Object value) {
+    public boolean offer(T value) {
 
         if (buffer[writeCursor] != null) {
 
@@ -25,9 +27,9 @@ public class CircularBuffer {
         return true;
     }
 
-    public Object poll() {
+    public T poll() {
 
-        final Object value = buffer[readCursor];
+        final T value = buffer[readCursor];
         if (value != null) {
 
             buffer[readCursor] = null;
