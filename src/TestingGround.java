@@ -36,9 +36,24 @@ public class TestingGround {
 
         System.out.println(madMen);
 
-        Collections.sort(madMen, new AgeComparator()); // can pass instance of class implementing Comparator
+        // Collections.sort(madMen, new AgeComparator()); // can pass instance of class implementing Comparator
+        // we can use create a ReverseComparator using our AgeComparator to sort the people by
+        // decreasing age
+
+        Collections.sort(madMen, new ReverseComparator<>(new AgeComparator()));
+        // since AgeComparator implements Comparator<Person> we pass it into the
+        // ctor of ReverseComparator<T>, Person gets set as the type T for
+        // the Comparator<T> field of ReverseComparator<T>. Whatever T is in that
+        // Comparator<T>, it will be the same T in ReverseComparator<T>.
+        // That's how the type for ReverseComparator<T> can be inferred, and we can
+        // just write ReverseComparator<> instead of ReverseComparator<Person> in the
+        // line above.
 
         System.out.println(madMen);
+
+        SortedPair<Integer> pair = new SortedPair<>(1, 2);
+        // valid since Integer implements Comparable<Integer>
+
 
     }
 

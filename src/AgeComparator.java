@@ -10,4 +10,5 @@ public class AgeComparator implements Comparator<Person> {
 
         return Integer.compare(left.getAge(), right.getAge()); // pass the job off to Integer class
     }
+
 }
