@@ -75,7 +75,7 @@ public class TestingGround {
         SortedPair<Integer> pair = new SortedPair<>(1, 2);
         // valid since Integer implements Comparable<Integer>
 
-        List arrayList = new CustomArrayList();
+        List<Integer> arrayList = new CustomArrayList<>();
 
         arrayList.add(0);
         arrayList.add(1);
