@@ -34,6 +34,13 @@ public class TestingGround {
         madMen.add(peggyOlson);
         madMen.add(bertCooper);
 
+
+        final Person youngestCastMember = (Person) min(madMen, new AgeComparator());
+        System.out.println(youngestCastMember);
+
+        // want to write the min method generically, so it can find min age of
+        // People, or min number of some Number class, or whatever.
+
         System.out.println(madMen);
 
         // Collections.sort(madMen, new AgeComparator()); // can pass instance of class implementing Comparator
@@ -55,6 +62,26 @@ public class TestingGround {
         // valid since Integer implements Comparable<Integer>
 
 
+    }
+
+    public static Object min(List values, Comparator comparator) {
+
+        if (values.isEmpty()) {
+
+            throw new IllegalArgumentException("List is empty. Cannot find min.");
+        }
+
+        Object lowestElement = values.get(0);
+
+        for (int i = 1; i < values.size(); i++) {
+            final Object element = values.get(i);
+
+            if (comparator.compare(element, lowestElement) < 0) { // current element is less than previous low
+                lowestElement = element;
+            }
+        }
+
+        return lowestElement;
     }
 
     private static String concatenate(final CircularBuffer<String> buffer) {
